@@ -18,3 +18,7 @@ a {
     text-decoration-color: darkblue;
     
 }
+nav li{
+display:inline;
+margin-right:10px;
+}
