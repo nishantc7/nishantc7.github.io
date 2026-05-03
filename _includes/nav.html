@@ -1,0 +1,12 @@
+{% assign current = page.nav_id | default: page.url %}
+<header class="site-nav">
+  <div class="nav-inner">
+    <nav class="nav-links">
+      <a href="{{ '/experience/' | relative_url }}"{% if current == "experience" or page.url contains "/experience" %} class="active"{% endif %}>Experience</a>
+      <a href="{{ '/projects/' | relative_url }}"{% if current == "projects" or page.url contains "/projects" %} class="active"{% endif %}>Projects</a>
+      <a href="{{ '/' | relative_url }}"{% if current == "home" %} class="active"{% endif %}>About</a>
+      <a href="{{ '/writing/' | relative_url }}"{% if current == "writing" or page.url contains "/writing" %} class="active"{% endif %}>Writing</a>
+    </nav>
+    <a href="{{ site.author.resume }}" target="_blank" rel="noopener" class="nav-email">Resume</a>
+  </div>
+</header>

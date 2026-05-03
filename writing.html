@@ -1,0 +1,66 @@
+---
+layout: default
+title: Writing
+permalink: /writing/
+nav_id: writing
+description: A logbook of engineering notes, architecture decisions, and reading.
+---
+
+<section class="page-header">
+  <h1 class="display">Logbook</h1>
+  <p class="body-lg">
+    A chronological feed of engineering notes, architecture decisions, and reading. Older personal posts live in the
+    archive below.
+  </p>
+</section>
+
+{% assign recent = site.posts | where_exp: "p", "p.archive != true" %}
+{% assign archive = site.posts | where: "archive", true %}
+
+<section class="logbook-group">
+  <div class="section-header">
+    <span class="label-caps">Recent</span>
+    <span class="metadata count">{{ recent | size | prepend: "00" | slice: -2, 2 }} {% if recent.size == 1 %}Entry{%
+      else %}Entries{% endif %}</span>
+  </div>
+  {% if recent.size == 0 %}
+  <p class="empty-state">First entry coming soon.</p>
+  {% else %}
+  <div class="logbook-feed">
+    {% for post in recent %}
+    <article class="logbook-entry">
+      <header class="entry-meta">
+        <span class="label-caps">{{ post.date | date: "%b %d, %Y" | upcase }}</span>
+        <div class="meta-rule"></div>
+      </header>
+      <h2 class="h1"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      {% if post.description %}<p class="body-md">{{ post.description }}</p>{% endif %}
+      <a href="{{ post.url | relative_url }}" class="read-more">Read entry <span class="arrow">→</span></a>
+    </article>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+
+{% if archive.size > 0 %}
+<section class="logbook-group">
+  <div class="section-header">
+    <span class="label-caps">Archive</span>
+    <span class="metadata count">{{ archive | size | prepend: "00" | slice: -2, 2 }} {% if archive.size == 1 %}Entry{%
+      else %}Entries{% endif %}</span>
+  </div>
+  <div class="logbook-feed">
+    {% for post in archive %}
+    <article class="logbook-entry">
+      <header class="entry-meta">
+        <span class="label-caps">{{ post.date | date: "%b %d, %Y" | upcase }}</span>
+        <div class="meta-rule"></div>
+      </header>
+      <h2 class="h1"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      {% if post.description %}<p class="body-md">{{ post.description }}</p>{% endif %}
+      <a href="{{ post.url | relative_url }}" class="read-more">Read entry <span class="arrow">→</span></a>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

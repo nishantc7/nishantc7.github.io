@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <span class="label-caps">{{ page.date | date: "%b %d, %Y" | upcase }}</span>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.description %}<p class="post-blurb">{{ page.description }}</p>{% endif %}
+  </header>
+  <div class="post-body">
+    {{ content }}
+  </div>
+  <footer class="post-footer">
+    <a href="{{ '/writing/' | relative_url }}" class="link-back">← Back to Logbook</a>
+  </footer>
+</article>

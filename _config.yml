@@ -1,1 +1,16 @@
-theme: jekyll-theme-minimal
+title: Nishant Choudhary
+description: Backend-focused Product Engineer. Distributed systems, event-driven architectures, scalable backend platforms, applied AI.
+url: https://nishantc7.github.io
+author:
+  name: Nishant Choudhary
+  email: nishant.choudh4ry.7@gmail.com
+  github: nishantc7
+  linkedin: https://www.linkedin.com/in/nishantchoudhary7/
+  resume: https://drive.google.com/file/d/1cmeY4ciM100keLUXtFlDOpOOmGYx7YbE/view
+markdown: kramdown
+permalink: /writing/:year/:month/:day/:title/
+exclude:
+  - docs/
+  - README.md
+  - Gemfile
+  - Gemfile.lock
