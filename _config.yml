@@ -8,6 +8,25 @@ author:
   linkedin: https://www.linkedin.com/in/nishantchoudhary7/
   resume: https://drive.google.com/file/d/1cmeY4ciM100keLUXtFlDOpOOmGYx7YbE/view
 markdown: kramdown
+
+twitter:
+  username: nishantc7
+  card: summary_large_image
+
+social:
+  name: Nishant Choudhary
+  links:
+    - https://github.com/nishantc7
+    - https://www.linkedin.com/in/nishantchoudhary7/
+
+tag_page_layout: tag_index
+tag_page_dir: tag
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-redirect-from
 permalink: /writing/:year/:month/:day/:title/
 exclude:
   - docs/

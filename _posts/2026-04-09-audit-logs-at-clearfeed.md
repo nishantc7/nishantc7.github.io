@@ -3,6 +3,7 @@ layout: post
 title: Audit logs at ClearFeed
 date: 2026-04-09
 description: "The decisions behind ClearFeed's audit logging system — why async dispatch, why a listener in the middle, why batching, and how export works at scale."
+tags: [engineering, work]
 ---
 
 I owned ClearFeed's audit logging system. It runs across all accounts, handles 10,000+ events a day, and backs the CSV exports enterprise customers hand to their auditors. This is about the decisions that shaped it and why I made them.

@@ -4,6 +4,7 @@ title: Random Anime Reviews
 date: 2020-07-06
 description: First blog from 2020 — recommendations on Kimi no Na wa, Haikyuu, Re:Zero, Erased, Boku no Hero Academia, and more.
 archive: true
+tags: [personal]
 ---
 
 Here's my first blog, and I can't help but write about **anime**. They have become a part of my lifestyle and teach me trivial, though important aspects of life.
