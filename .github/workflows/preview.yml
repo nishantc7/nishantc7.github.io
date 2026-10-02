@@ -13,6 +13,8 @@ jobs:
         with:
           ruby-version: '3.2'
           bundler-cache: true
+      - name: Check reading submissions
+        run: ruby scripts/test_add_reading.rb
       - name: Build production paths
         run: bundle exec jekyll build --destination _site-production
         env:

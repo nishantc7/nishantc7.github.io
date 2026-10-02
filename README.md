@@ -26,7 +26,22 @@ docs/        Design specs (excluded from build)
 
 No JS, no CSS framework, no build step beyond Jekyll.
 
-## Sharing an article
+## Quick add (owner only)
+
+Open https://github.com/nishantc7/nishantc7.github.io/actions/workflows/add-reading.yml
+while signed in as `nishantc7`. Click **Run workflow**, keep branch **master**, paste
+the article title and HTTPS URL, and submit. Note, publication name, HN discussion
+and date are optional. The source defaults to the domain; date defaults to today
+in India. A green workflow means the link has been published. Bookmark this page
+on your phone for quick access.
+
+The workflow only runs for `nishantc7` on `master`, including re-runs. Public visitors
+cannot submit. Repository write/admin permissions still control direct file edits.
+Submitting the same URL updates it. For removal, edit `_data/reading.yml` below.
+Concurrent submissions are serialized; GitHub keeps only one pending run, so wait
+for a submission to finish before sending the next.
+
+## Sharing an article manually
 
 Edit `_data/reading.yml`. Replace `[]` with your first entry, then append entries:
 
