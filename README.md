@@ -30,9 +30,9 @@ No JS, no CSS framework, no build step beyond Jekyll.
 
 Open https://github.com/nishantc7/nishantc7.github.io/actions/workflows/add-reading.yml
 while signed in as `nishantc7`. Click **Run workflow**, keep branch **master**, paste
-the article title and HTTPS URL, and submit. Note, publication name, HN discussion
-and date are optional. The source defaults to the domain; date defaults to today
-in India. A green workflow means the link has been published. Bookmark this page
+just the HTTPS URL, and submit. Title, note, publication name, HN discussion
+and date are optional. A URL-only submission displays a bare clickable link.
+The date defaults to today in India for sorting. A green workflow means the link has been published. Bookmark this page
 on your phone for quick access.
 
 The workflow only runs for `nishantc7` on `master`, including re-runs. Public visitors
@@ -46,17 +46,17 @@ for a submission to finish before sending the next.
 Edit `_data/reading.yml`. Replace `[]` with your first entry, then append entries:
 
 ```yaml
-- title: "Article title"
-  url: "https://example.com/article"
-  source: "Publication name"
+- url: "https://example.com/article"
+  title: "Article title" # Optional
+  source: "Publication name" # Optional
   date: "2026-10-02" # Date you shared it, YYYY-MM-DD
   note: "Why I found this interesting." # Optional, plain text
   discussion: "https://news.ycombinator.com/item?id=123" # Optional
 ```
 
 Use HTTPS links. Both pages sort by date, newest first. The homepage shows
-three entries; `/reading/` shows all of them. Notes and discussion links are
-optional. No sample articles are published. Keep every date in YYYY-MM-DD format.
+three entries; `/reading/` shows all of them. Title, source, notes and discussion
+links are optional. Omit them all for a bare link. No sample articles are published. Keep every date in YYYY-MM-DD format.
 
 ## Previewing a change
 

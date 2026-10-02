@@ -1,8 +1,12 @@
+{% assign reading_title = include.item.title | strip %}
+{% assign reading_source = include.item.source | strip %}
 <article class="reading-entry">
   <{{ include.heading | default: 'h2' }} class="h2">
-    <a href="{{ include.item.url | escape }}" target="_blank" rel="noopener noreferrer">{{ include.item.title | escape }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+    <a href="{{ include.item.url | escape }}" target="_blank" rel="noopener noreferrer">{{ reading_title | default: include.item.url | escape }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
   </{{ include.heading | default: 'h2' }}>
-  <p class="metadata">{{ include.item.source | escape }} · Shared <time datetime="{{ include.item.date | date: '%Y-%m-%d' }}">{{ include.item.date | date: '%b %-d, %Y' }}</time></p>
+  {% if reading_title != '' or reading_source != '' %}
+  <p class="metadata">{% if reading_source != '' %}{{ reading_source | escape }} · {% endif %}Shared <time datetime="{{ include.item.date | date: '%Y-%m-%d' }}">{{ include.item.date | date: '%b %-d, %Y' }}</time></p>
+  {% endif %}
   {% if include.item.note and include.item.note != '' %}<p class="body-md reading-note">{{ include.item.note | escape }}</p>{% endif %}
   {% if include.item.discussion and include.item.discussion != '' %}
   <a class="reading-discussion" href="{{ include.item.discussion | escape }}" target="_blank" rel="noopener noreferrer">HN discussion <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>

@@ -3,19 +3,18 @@ run-name: Add reading link
 on:
   workflow_dispatch:
     inputs:
-      title:
-        description: Article title
-        required: true
-        type: string
       url:
         description: Article URL (https://...)
         required: true
+        type: string
+      title:
+        description: Article title (optional, leave blank to show the URL)
         type: string
       note:
         description: Your note (optional)
         type: string
       source:
-        description: Publication name (optional, defaults to domain)
+        description: Publication name (optional)
         type: string
       discussion:
         description: Hacker News discussion URL (optional)
