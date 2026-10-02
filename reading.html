@@ -1,0 +1,23 @@
+---
+layout: default
+title: Reading
+permalink: /reading/
+nav_id: reading
+description: Articles, essays, and things I found interesting around the web.
+---
+<section class="page-header">
+  <h1 class="display">Reading</h1>
+  <p class="body-lg">Articles, essays, and things I found interesting around the web.</p>
+</section>
+{% assign reading = site.data.reading | sort: 'date' | reverse %}
+<section aria-label="Shared articles">
+  {% if reading.size > 0 %}
+  <div class="reading-list">
+    {% for item in reading %}
+      {% include reading-entry.html item=item %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty-state">Reading links coming soon.</p>
+  {% endif %}
+</section>
