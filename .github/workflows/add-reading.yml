@@ -1,0 +1,70 @@
+name: Add reading link
+run-name: Add reading link
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: Article title
+        required: true
+        type: string
+      url:
+        description: Article URL (https://...)
+        required: true
+        type: string
+      note:
+        description: Your note (optional)
+        type: string
+      source:
+        description: Publication name (optional, defaults to domain)
+        type: string
+      discussion:
+        description: Hacker News discussion URL (optional)
+        type: string
+      date:
+        description: Date shared (optional YYYY-MM-DD, defaults to today in India)
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: reading-submissions
+  cancel-in-progress: false
+jobs:
+  save:
+    if: github.actor == 'nishantc7' && github.triggering_actor == 'nishantc7' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+      - name: Validate and save article
+        run: ruby scripts/add_reading.rb
+        env:
+          ARTICLE_TITLE: ${{ inputs.title }}
+          ARTICLE_URL: ${{ inputs.url }}
+          ARTICLE_NOTE: ${{ inputs.note }}
+          ARTICLE_SOURCE: ${{ inputs.source }}
+          ARTICLE_DISCUSSION: ${{ inputs.discussion }}
+          ARTICLE_DATE: ${{ inputs.date }}
+      - name: Commit reading link
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add _data/reading.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update reading links'
+            git push origin HEAD:master
+          fi
+      - name: Confirm submission
+        run: echo 'Reading link saved. The publish job will update https://nishantc7.github.io/reading/.' >> "$GITHUB_STEP_SUMMARY"
+  publish:
+    needs: save
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy.yml

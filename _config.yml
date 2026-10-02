@@ -34,3 +34,6 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+
+  - _site-production/
+  - scripts/

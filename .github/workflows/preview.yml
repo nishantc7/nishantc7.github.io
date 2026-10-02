@@ -1,0 +1,31 @@
+name: Build pull request preview
+on:
+  pull_request:
+    branches: [master]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+      - name: Check reading submissions
+        run: ruby scripts/test_add_reading.rb
+      - name: Build production paths
+        run: bundle exec jekyll build --destination _site-production
+        env:
+          JEKYLL_ENV: production
+      - name: Build separate Pages preview
+        run: bundle exec jekyll build --baseurl /website-preview/v2
+        env:
+          JEKYLL_ENV: production
+      - run: touch _site/.nojekyll
+      - uses: actions/upload-artifact@v4
+        with:
+          name: website-preview
+          path: _site/
+          include-hidden-files: true

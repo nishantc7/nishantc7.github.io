@@ -8,7 +8,7 @@ layout: default
     {% if page.description %}<p class="post-blurb">{{ page.description }}</p>{% endif %}
     {% if page.tags and page.tags.size > 0 %}
     <div class="post-tags">
-      {% for tag in page.tags %}<a href="/tag/{{ tag | slugify }}/" class="tag">#{{ tag }}</a> {% endfor %}
+      {% for tag in page.tags %}<a href="{{ tag | slugify | prepend: '/tag/' | append: '/' | relative_url }}" class="tag">#{{ tag }}</a> {% endfor %}
     </div>
     {% endif %}
   </header>

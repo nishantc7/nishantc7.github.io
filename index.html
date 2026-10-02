@@ -6,20 +6,27 @@ nav_id: home
 
 <section class="hero">
   <h1 class="display">Nishant Choudhary</h1>
-  <p class="body-lg hero-lede">
-    Building reliable backend systems, async workflows, and scalable product infrastructure.
-  </p>
-  <p class="body-lg hero-bio">
-    Interested in distributed systems, event-driven architectures, and practical AI systems. I enjoy owning products end-to-end, thinking through engineering tradeoffs, and continuously learning how modern systems evolve.
-  </p>
+  <p class="hero-current">Senior Software Engineer at <a href="{{ '/experience/#myfi' | relative_url }}">MyFi</a></p>
+  <p class="body-lg hero-bio">I build reliable backend systems, async workflows, and scalable product infrastructure. My interests include distributed systems, event-driven architectures, and practical AI systems. I enjoy owning products end-to-end, thinking through engineering tradeoffs, and continually learning how modern systems evolve.</p>
+  <div class="intro-links">
+    <a href="{{ site.author.resume }}" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+    <a href="mailto:{{ site.author.email }}">Email</a>
+  </div>
 </section>
 
 <section class="section">
   <div class="section-header">
-    <span class="label-caps">Experience</span>
+    <h2 class="label-caps">Experience</h2>
     <a href="{{ '/experience/' | relative_url }}" class="label-caps" style="color: var(--muted);">All Roles →</a>
   </div>
   <div class="role-list">
+    <a href="{{ '/experience/#myfi' | relative_url }}" class="role-row">
+      <div>
+        <span class="h2 role-title">MyFi</span>
+        <span class="metadata role-sub">Senior Software Engineer</span>
+      </div>
+      <span class="metadata">Jun 2026 – Present</span>
+    </a>
     <a href="{{ '/experience/#clearfeed' | relative_url }}" class="role-row">
       <div>
         <span class="h2 role-title">ClearFeed</span>
@@ -27,19 +34,12 @@ nav_id: home
       </div>
       <span class="metadata">Oct 2025 — Apr 2026</span>
     </a>
-    <a href="{{ '/experience/#ringover-backend' | relative_url }}" class="role-row">
-      <div>
-        <span class="h2 role-title">Ringover Group</span>
-        <span class="metadata role-sub">Backend Developer</span>
-      </div>
-      <span class="metadata">Feb 2022 — Oct 2025</span>
-    </a>
   </div>
 </section>
 
 <section class="section">
   <div class="section-header">
-    <span class="label-caps">Projects</span>
+    <h2 class="label-caps">Projects</h2>
     <a href="{{ '/projects/' | relative_url }}" class="label-caps" style="color: var(--muted);">All Projects →</a>
   </div>
   <div class="role-list">
@@ -52,3 +52,40 @@ nav_id: home
     </a>
   </div>
 </section>
+
+{% assign latest_posts = site.posts | where_exp: "post", "post.archive != true" %}
+{% if latest_posts.size > 0 %}
+<section class="section">
+  <div class="section-header">
+    <h2 class="label-caps">Recent writing</h2>
+    <a href="{{ '/writing/' | relative_url }}" class="label-caps">All Writing →</a>
+  </div>
+  {% for post in latest_posts limit:1 %}
+  <article class="reading-entry">
+    <h3 class="h2"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+    <p class="metadata"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%b %-d, %Y' }}</time></p>
+    {% if post.description %}<p class="body-md reading-note">{{ post.description | escape }}</p>{% endif %}
+  </article>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% assign reading = site.data.reading | sort: 'date' | reverse %}
+{% if reading.size > 0 %}
+<section class="section">
+  <div class="section-header">
+    <h2 class="label-caps">Recently read</h2>
+    <a href="{{ '/reading/' | relative_url }}" class="label-caps">All Reading →</a>
+  </div>
+  {% if reading.size > 0 %}
+  <div class="reading-list">
+    {% for item in reading limit:3 %}
+      {% include reading-entry.html item=item heading='h3' %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="body-md">Reading links coming soon.</p>
+  {% endif %}
+</section>
+
+{% endif %}
