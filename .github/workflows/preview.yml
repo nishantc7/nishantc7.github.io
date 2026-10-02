@@ -18,7 +18,7 @@ jobs:
         env:
           JEKYLL_ENV: production
       - name: Build separate Pages preview
-        run: bundle exec jekyll build --baseurl /website-preview
+        run: bundle exec jekyll build --baseurl /website-preview/v2
         env:
           JEKYLL_ENV: production
       - run: touch _site/.nojekyll

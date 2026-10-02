@@ -51,3 +51,5 @@ For a separate GitHub Pages preview repository named `website-preview`, build wi
 `_site` contents there, with an empty `.nojekyll` file. Configure that repository's
 Pages source to its publishing branch. The production repository continues to
 publish only changes merged to `master`.
+
+This alternative preview uses `/website-preview/v2/` and retains the first preview at `/website-preview/`.
