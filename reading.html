@@ -12,11 +12,19 @@ description: Articles, essays, and things I found interesting around the web.
 {% assign reading = site.data.reading | sort: 'date' | reverse %}
 <section aria-label="Shared articles">
   {% if reading.size > 0 %}
-  <div class="reading-list">
-    {% for item in reading %}
-      {% include reading-entry.html item=item %}
-    {% endfor %}
-  </div>
+  {% assign months = reading | group_by_exp: "item", "item.date | date: '%Y-%m'" %}
+  {% for month in months %}
+  <section class="section" aria-labelledby="reading-{{ month.name }}">
+    <header class="section-header">
+      <h2 class="label-caps" id="reading-{{ month.name }}">{{ month.items.first.date | date: '%B %Y' }}</h2>
+    </header>
+    <div class="reading-list">
+      {% for item in month.items %}
+        {% include reading-entry.html item=item heading="h3" %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
   {% else %}
   <p class="empty-state">Reading links coming soon.</p>
   {% endif %}
