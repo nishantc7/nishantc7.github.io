@@ -18,7 +18,7 @@ Open http://localhost:4000.
 ```
 _layouts/    Default page + post layouts
 _includes/   Shared header, nav, footer partials
-_posts/      Logbook entries (Markdown, dated)
+_posts/      Writing posts (Markdown, dated)
 assets/css/  Single handwritten CSS file
 *.html       Top-level pages: index, experience, projects, writing
 docs/        Design specs (excluded from build)
