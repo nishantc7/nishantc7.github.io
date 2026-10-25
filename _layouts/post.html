@@ -3,7 +3,7 @@ layout: default
 ---
 <article class="post">
   <header class="post-header">
-    <span class="label-caps">{{ page.date | date: "%b %d, %Y" | upcase }}</span>
+    <span class="label-caps">{{ page.date | date: "%b %d, %Y" | upcase }}<span class="post-views" hidden></span></span>
     <h1 class="post-title">{{ page.title }}</h1>
     {% if page.description %}<p class="post-blurb">{{ page.description }}</p>{% endif %}
     {% if page.tags and page.tags.size > 0 %}
@@ -19,3 +19,17 @@ layout: default
     <a href="{{ '/writing/' | relative_url }}" class="link-back">← Back to Writing</a>
   </footer>
 </article>
+{% assign base_path = site.baseurl | default: "" %}
+{% if jekyll.environment == "production" and base_path == "" %}
+<script>
+  (function () {
+    var el = document.querySelector('.post-views');
+    var url = 'https://nishantc7.goatcounter.com/counter/' + encodeURIComponent({{ page.url | jsonify }}) + '.json';
+    fetch(url).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+      if (!d || !d.count) return;
+      el.textContent = ' · ' + d.count + (d.count === '1' ? ' VIEW' : ' VIEWS');
+      el.hidden = false;
+    }).catch(function () {});
+  })();
+</script>
+{% endif %}
