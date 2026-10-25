@@ -10,3 +10,8 @@
     </div>
   </div>
 </footer>
+{% assign base_path = site.baseurl | default: "" %}
+{% if jekyll.environment == "production" and base_path == "" %}
+<script data-goatcounter="https://nishantc7.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+{% endif %}
