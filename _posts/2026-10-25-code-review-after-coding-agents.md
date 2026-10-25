@@ -11,7 +11,7 @@ By important changes, I mean code with a high blast radius: code that can hurt m
 
 A skill is a set of written instructions that a coding agent such as Claude Code loads and follows for one kind of task. This one tells the agent how to review a pull request.
 
-The examples below come from the review page for an example PR. The full page is [in the repo](https://github.com/nishantc7/skills/blob/main/reviewing-pr-decisions/example-review.html).
+The examples below come from the review page for an example PR. The full page is [here](https://raw.githack.com/nishantc7/skills/main/reviewing-pr-decisions/example-review.html).
 
 ## The pattern
 
