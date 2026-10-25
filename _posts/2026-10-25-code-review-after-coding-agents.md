@@ -7,17 +7,17 @@ tags: [engineering]
 
 **TL;DR:** A year back, I used to read the diff for every line. Now I use a [skill](https://github.com/nishantc7/skills) to get a review page made for every PR. It highlights the important changes and writes pseudocode for them, so I don't read through the diff for every file.
 
-By important changes, I mean code with a high blast radius: code that can hurt many users, or do damage that is hard to undo, if it is wrong.
+Reviewing every line cost me and the team too much time. We reviewed each other's PRs line by line, while PRs get raised faster than ever and each of us is expected to review more of them. It's hard to justify reading every diff line by line, unless the change is very hard to test.
 
-A skill is a set of written instructions that a coding agent such as Claude Code loads and follows for one kind of task. This one tells the agent how to review a pull request.
-
-The examples below come from the review page for an example PR. The full page is [here](https://raw.githack.com/nishantc7/skills/main/reviewing-pr-decisions/example-review.html).
+I've seen people skim through a 40-file pull request and come back with comments like "This type should be optional here" or "Remove this comment from this file to keep the code readable." In my opinion, that does not justify the amount of time it takes.
 
 ## The pattern
 
 The way to do it is to get AI to help me follow a pattern for reading PRs: skim first using the flowcharts, then read the pseudocode for the new or changed logic that matters.
 
 First, there's the flowchart. It gives me an overview of the flows and how they've changed. This helps me see which parts are critical and need more focus when I go through the code.
+
+*These examples come from the review page for an example PR. The full page is [here](https://raw.githack.com/nishantc7/skills/main/reviewing-pr-decisions/example-review.html).*
 
 ![A before and after flowchart. Checkout, receipt emails and partner webhooks all use a shared HTTP client. After the change, the client tries up to 3 times, so a card can be charged twice, a receipt can arrive 3 times, and a partner can get an event 3 times.]({{ "/assets/img/how-to-review-code/review-flowchart.png" | relative_url }})
 
@@ -29,7 +29,9 @@ Then I can pick up individual changes and read the pseudocode for them.
 
 When a change edits a function that other code calls, the page lists those callers and counts them. That makes the blast radius easy to see before I read any code.
 
-I was building an integration into one of our most used flows. The review page listed every outside call the change made, and one of them went to an integration we had retired months earlier. The call sat in a helper the new code reused, so the diff never showed it. Reading file by file, I would have missed it.
+By blast radius, I mean how much damage a change can do if it is wrong: how many users it can hurt, and how hard it is to undo.
+
+I was building an integration into one of our most used flows. The review page listed every outside call the change made, and one of them went to an integration we had retired months earlier. Reading file by file, I would have missed it.
 
 ## The workflow
 
@@ -56,6 +58,8 @@ For me, it's enough if I can understand the change at the level of the arrows in
 I still read the diff line by line when a change moves money, sends emails, deletes data, changes a login check or runs a database migration.
 
 ## Try it
+
+A skill is a set of written instructions that a coding agent such as Claude Code loads and follows for one kind of task. This one tells the agent how to review a pull request.
 
 [github.com/nishantc7/skills](https://github.com/nishantc7/skills)
 
