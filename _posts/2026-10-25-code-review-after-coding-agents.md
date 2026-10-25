@@ -51,7 +51,7 @@ I also trade some codebase hygiene for velocity. Specifically:
 - Neater types
 - Variable names
 
-A year ago, I reviewed every line of code that went into production. Even if it was a test with a variable name that could be improved, I would change it. Honestly, I don't think that is required anymore.
+I used to change even a test's variable name if it could be improved. Honestly, I don't think that is required anymore.
 
 For me, it's enough if I can understand the change at the level of the arrows in a diagram, the change is well tested, it helps me move faster, and the code won't be hard to change in a month.
 
