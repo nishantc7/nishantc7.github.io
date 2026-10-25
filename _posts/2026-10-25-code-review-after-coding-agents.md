@@ -37,7 +37,7 @@ I was building an integration into one of our most used flows. The review page l
 
 1. Plan properly. I make the architectural decisions, like the system design, before any code is written. Below that level, I tell the agent the what, not the how. The whole SDLC (software development life cycle: design, build, test, review and ship) lives inside the plan. Then grill the plan before building, and then build. To grill a plan, I ask the agent to question me about it, one decision at a time, until nothing is left unclear.
 2. The agent must test its own code in a dev environment. Visual changes are tested through emulators, plus throwaway instances when needed.
-3. Use the review skill to review the PR's decisions instead of reading the diffs. A decision is a choice the agent made where the ticket did not say what to do, such as a timeout, a default or a filter.
+3. Use the review skill to review the PR's decisions instead of reading the diffs.
 
 The skill also starts an independent reviewer that never sees the main review. It looks for security and performance problems separately.
 
